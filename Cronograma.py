@@ -77,7 +77,7 @@ st.sidebar.write("#### Acompanhamento de performance")
 st.sidebar.write(f"#### Data: {data_hoje}")
 
 if st.sidebar.button("Recarregar"):
-    st.experimental_rerun()
+    st.rerun()
 
 # TOPO (colunas para texto e imagem)
 image = Image.open("user_cynthia.png")
