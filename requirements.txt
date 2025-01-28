@@ -1,0 +1,10 @@
+streamlit
+pandas
+plotly
+numpy
+pytz
+Pillow
+streamlit-autorefresh
+streamlit-extras
+openpyxl
+matplotlib
