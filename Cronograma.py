@@ -119,14 +119,6 @@ semana_selecionada = st.sidebar.selectbox("**Selecione a Semana** 📅", lista_s
 # Filtrar o DataFrame para a semana selecionada
 df_semana_selecionada = df[df['Semana'] == semana_selecionada].copy()
 
-# Botão para salvar alterações no Excel
-if st.sidebar.button("Salvar Registros da Semana Selecionada"):
-    for i, row_editado in df_editado.iterrows():
-        df.loc[i] = row_editado
-    df.to_excel(df_path, index=False)
-    st.success("Alterações salvas com sucesso! A página será recarregada.")
-    st.experimental_rerun()
-
 # === KPIs ================================================================
 media_acerto = df[df['Percentual de Acerto'] > 0]['Percentual de Acerto'].mean()
 media_questoes_feitas = df[df['Percentual de questões feitas'] > 0]['Percentual de questões feitas'].mean()
@@ -225,4 +217,12 @@ st.write(f" ")
 st.write(f" ")
 st.write(f"##### Semana {semana_selecionada}")
 df_editado = st.data_editor(df_semana_selecionada, key="editor_semana", hide_index=True)
+
+# Botão para salvar alterações no Excel
+if st.sidebar.button("Salvar Registros da Semana Selecionada"):
+    for i, row_editado in df_editado.iterrows():
+        df.loc[i] = row_editado
+    df.to_excel(df_path, index=False)
+    st.success("Alterações salvas com sucesso! A página será recarregada.")
+    st.experimental_rerun()
 
