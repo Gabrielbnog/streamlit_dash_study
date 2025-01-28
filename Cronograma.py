@@ -19,7 +19,7 @@ from io import BytesIO
 
 st.set_page_config(layout="wide", page_title="Cronograma")
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
+#st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # === FUNÇÃO: CLASSIFICAR PERCENTUAL DE ACERTO =============================
 
