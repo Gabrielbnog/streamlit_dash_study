@@ -224,5 +224,5 @@ if st.sidebar.button("Salvar Registros da Semana Selecionada"):
         df.loc[i] = row_editado
     df.to_excel(df_path, index=False)
     st.success("Alterações salvas com sucesso! A página será recarregada.")
-    st.experimental_rerun()
+    st.rerun()
 
