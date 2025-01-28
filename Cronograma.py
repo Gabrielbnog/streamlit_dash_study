@@ -71,7 +71,7 @@ def gerar_data_revisao(df):
 data_hoje = datetime.now().strftime('%d/%m/%Y') 
 
 # SIDEBAR
-st.sidebar.image(Image.open("C:/Users/TOMAHAWK/Documents/Acompanhamento_performance/medicina_logo.png"), width=80)
+st.sidebar.image(Image.open("medicina_logo.png"), width=80)
 st.sidebar.write("### Bem-vindo, Cynthia!")
 st.sidebar.write("#### Acompanhamento de performance")
 st.sidebar.write(f"#### Data: {data_hoje}")
@@ -80,7 +80,7 @@ if st.sidebar.button("Recarregar"):
     st.experimental_rerun()
 
 # TOPO (colunas para texto e imagem)
-image = Image.open("C:/Users/TOMAHAWK/Documents/Acompanhamento_performance/user_cynthia.png")
+image = Image.open("user_cynthia.png")
 col1, col2 = st.columns([0.05, 0.95])
 
 with col1:
@@ -90,7 +90,7 @@ with col2:
 
 # === LEITURA DO ARQUIVO EXCEL ============================================
 
-df_path = "C:/Users/TOMAHAWK/Documents/Acompanhamento_performance/tabela_acompanhamento_cynthia.xlsx"
+df_path = "tabela_acompanhamento_cynthia.xlsx"
 df = pd.read_excel(df_path)
 
 # Tratar colunas e recalcular percentuais
@@ -105,7 +105,7 @@ df = classificar_percentual_acerto(df, 'Percentual de Acerto')
 df = gerar_data_revisao(df)
 
 df.to_excel(df_path, index=False)
-df_path = "C:/Users/TOMAHAWK/Documents/Acompanhamento_performance/tabela_acompanhamento_cynthia.xlsx"
+df_path = "tabela_acompanhamento_cynthia.xlsx"
 df = pd.read_excel(df_path)
 
 #Cria um df com uma chave para poder ser visualizado em outras pages(semelhante a um cache de um browser)
