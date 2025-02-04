@@ -14,15 +14,10 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import base64
 from io import BytesIO
-from github import Github
 
 # === CONFIGURAÇÕES DA PÁGINA E LAYOUT =====================================
 
 st.set_page_config(layout="wide", page_title="Cronograma")
-
-GITHUB_TOKEN = "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"
-REPO_NAME = "Gabrielbnog/streamlit_dash_study"
-FILE_PATH = "tabela_acompanhamento_cynthia.xlsx"
 
 #st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -223,33 +218,11 @@ st.write(f" ")
 st.write(f"##### Semana {semana_selecionada}")
 df_editado = st.data_editor(df_semana_selecionada, key="editor_semana", hide_index=True)
 
-def salvar_no_github(conteudo):
-    g = Github(GITHUB_TOKEN)
-    repo = g.get_repo(REPO_NAME)
-    file = repo.get_contents(FILE_PATH)
-
-    # Atualiza o arquivo
-    repo.update_file(
-        path=FILE_PATH,
-        message="Atualizando Excel via Streamlit",
-        content=conteudo,
-        sha=file.sha,
-    )
-
-# No botão salvar
+#Botão para salvar alterações no Excel
 if st.sidebar.button("Salvar Registros da Semana Selecionada"):
-    with BytesIO() as buffer:
-        df.to_excel(buffer, index=False)
-        salvar_no_github(buffer.getvalue())
-    st.success("Alterações salvas no GitHub com sucesso! A página será recarregada.")
-    st.rerun()
-
-
-# Botão para salvar alterações no Excel
-#if st.sidebar.button("Salvar Registros da Semana Selecionada"):
-#    for i, row_editado in df_editado.iterrows():
-#        df.loc[i] = row_editado
-#    df.to_excel(df_path, index=False)
-#    st.success("Alterações salvas com sucesso! A página será recarregada.")
-#    st.rerun()
+   for i, row_editado in df_editado.iterrows():
+       df.loc[i] = row_editado
+   df.to_excel(df_path, index=False)
+   st.success("Alterações salvas com sucesso! A página será recarregada.")
+   st.rerun()
 
